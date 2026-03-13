@@ -1,0 +1,34 @@
+%! TeX program = lualatex
+\documentclass{book}
+\usepackage{graphicx}
+\usepackage{amsthm}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage[table]{xcolor}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[version=4]{mhchem}
+\usepackage{stmaryrd}
+\usepackage{graphicx}
+\usepackage[export]{adjustbox}
+\usepackage{caption}
+
+
+\newtheorem{definition}{Definition}
+\newtheorem{example}{Example}
+\newtheorem{problem}{Problem}
+\input{sym.tex}
+
+\usepackage{comment}
+\newif\ifsol
+%\definecolor{sol}{rgb}{0,0,1}\soltrue
+\definecolor{sol}{rgb}{1,1,1}\solfalse
+\ifsol
+  \newenvironment{sol}{\begingroup\color{sol}}{\endgroup}
+\else
+  \NewDocumentEnvironment{sol}{+b}{\vspace{2in}}{}
+\fi
+
+\begin{document}
+\input{body}
+\end{document}
