@@ -308,17 +308,16 @@ Let R be the set of all sets that are not members of themselves (sometimes calle
 \begin{example}
   Prove De Morgan laws for sets $\overline{A \cap B} = \bar{A} \cup \bar{B}$, and $\overline{A \cup B} = \bar{A} \cap \bar{B}$.
 \end{example}
-{\color{sol}
-  \begin{align}
-  e \in A \cap B = e \in (A \cap B) = (e \in A) \land (e \in B)
-  \end{align}
-  \begin{align}
-    e \in \overline{A \cap B} = \neg((e \in A) \land (e \in B)) = (\neg(e \in A) \lor \neg(e \in B)) = (e \notin A) \lor (e \in B)
-  \end{align}
-  \begin{align}
-    e \in (\bar{A} \cup \bar{B}) = (e \in \bar{A}) \lor (e \in \bar{B}) = (e \notin A) \lor (e \notin B)
-  \end{align}
-}
+
+
+
+\bibliography{main}
+\bibliographystyle{plainnat}
+
+Total marks: \arabic{marks}
+\newpage
+
+
 
 \section{Relations}
 
@@ -706,10 +705,3 @@ Background axioms With these set of axioms we have to formalize some background 
 \forall x(\operatorname{Town}(x) \rightarrow \exists y(\operatorname{IsInRegion}(x, y))) \wedge \forall x y z(\operatorname{IsInRegion}(x, y) \wedge \operatorname{IsInRegion}(x, z) \rightarrow y=z) \tag{3.3}
 \end{equation*}
 }\end{sol}
-
-
-
-\bibliography{main}
-\bibliographystyle{plainnat}
-
-Total marks: \arabic{marks}
