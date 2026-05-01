@@ -1,0 +1,156 @@
+\documentclass[options]{article}
+\usepackage{graphicx}
+\graphicspath{{../1014-analog-details/fig/}}
+\newtheorem{example}{Example}
+\newtheorem{prob}{Problem}
+\newtheorem{remark}{Remark}
+\newtheorem{definition}{Definition}
+\usepackage{enumitem,amssymb}
+\newlist{todolist}{itemize}{2}
+\setlist[todolist]{label=$\square$}
+
+\usepackage{pifont}
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+\newcommand{\done}{\rlap{$\square$}{\raisebox{2pt}{\large\hspace{1pt}\cmark}}%
+  \hspace{-2.5pt}}
+\newcommand{\wontfix}{\rlap{$\square$}{\large\hspace{1pt}\xmark}}
+
+
+\begin{document}
+
+\section{Syllabus covered}
+%\subsection{Midterm 1}
+\subsection{Combinational logic}
+\begin{todolist}
+  \item[\done] Generate minterms, maxterms, SOP canonical form and POS
+    canonical forms and convert between them\\
+  \item[\done]  Understand and use the laws and theorems of Boolean Algebra
+  \item[\done]  Perform algebraic simplification using Boolean algebra
+  \item[\done]  Derive sum of product and product of sums expressions for a combinational circuit
+  \item[\done]  Convert combinational logic to NAND-NAND and NOR-NOR forms
+  \item[\done] Simplification using K-maps
+\end{todolist}
+
+%\subsection{Midterm 2}
+\subsection{Sequential logic}
+\begin{todolist}
+  \item[\done] Understand the difference between synchronous and asynchronous inputs
+  \item[\done] Derive a state graph or state table from a word description of the problem
+  \item[\done] Implement a design using JK, SR, D or T flip-flops
+  \item[\done] Design a sequential circuit and derive a state-table and a state-graph
+  \item[\done] Design and design both Mealy and Moore sequential circuits with multiple inputs and multiple outputs
+  \item[\done] Reduce the number of states in a state table using row reduction and implication tables
+  \item[\done] Perform a state assignment using the guideline method
+\end{todolist}
+
+\subsection{Discrete Mathematics}
+
+\begin{todolist}
+\item[\done] Defining Propositional Logic.
+\item[\done] Defining Predicate Logic.
+\item[\done] Defining Set, function, or relation model, and interpret the associated operations.
+\item[\done] Operations between sets, functions, and relations.
+\item[\done] Constructing proofs.
+\item[\done] Logical reasoning to solve a strategic problem.
+\item[\done] Model a real-life industry application applying formal methods.
+\end{todolist}
+
+%\subsection{Final (includes previous topics)}
+\begin{todolist}
+\item[\done] Design combinational circuits using multiplexers and decoders
+% \item[\done] Design combinational circuits for positive and negative logic
+% \item[\done] Design Hazard-free two level circuits.
+% \item[\done] Compute fan out and noise margin of one device driving the same time
+% \item[\done] Compute noise margin of one device
+% \item[\done] Describe how tri-state and open-collector outputs are different from totem-pole outputs.
+\item[\done] Different between and limitations of level-triggered latches and edge-triggered flip-flops.
+%\item[\done] Know the differences and similarities between PAL, PLA, and ROMs and can use each for logic design
+\end{todolist}
+
+\subsection{Labs (not asked in final exam)}
+\begin{todolist}
+\item[\done] Quartus/ModelSim installation and setup to interface it with Cyclone III FPGA.
+\item[\done] Create a multiplexer using the GUI schematic functionality in Quartus
+\item[\done] Create a multiplexer with SystemVerilog only using the NOT, AND, OR operators.
+\item[\done] Compare the gates synthesized from your SystemVerilog code by Quartus to the schematic design
+\item[\done] Extend the multiplexer to accept a vector of inputs
+\item[\done] Write and use SystemVerilog modules for reuse the modules
+\item[\done] Learn to write state machines using Verilog
+\item[\done] Learn about Behavioral Verilog and the following Verilog syntax
+  \begin{todolist}
+  \item[\done] Number representation: 3’b010, 4’d4, 8’hFF
+  \item[\done] Concatenation \verb|{SW[1:3], SW[4:7]}|
+  \item[\done] Conditional operator  f = x ? y : z;
+  \item[\done] Always block: \verb|always_comb|, \verb|always_ff| @(Sensitity list)
+  \item[\done] case statement
+  \item[\done] if statement
+  \item[\done] logic type in System Verilog, vs wire and reg type in Verilog
+  \item[\done] posedge keyword
+  \item[\done] `include keyword
+  \item[\done] Synthesizer directives: /* synthesis keep */
+\item[\done] Non-synthesizable statements for simulation: \verb|$display, `timescale|
+  \end{todolist}
+\end{todolist}
+
+
+\newpage
+\section{Logic levels and Noise Margins}
+
+\includegraphics[width=0.8\linewidth]{logic-levels-and-noise-margins.png}
+
+% \begin{definition}[Supply Voltage ($V_{DD}$/$V_{CC}$/$V_{SS}$) ]
+%   \color{\notescol}
+%   The highest DC voltage that drives a digital circuit. As chips have progressed
+%   to smaller transistors, $V_{DD}$ has dropped from 5V to 1.2V or even lower to
+%   save power.
+% \end{definition}
+% 
+% \begin{definition}[Ground Voltage ($V_{GND}$) ]
+%   \color{\notescol}
+%   The lowest DC voltage that drives a digital circuit, typically 0V.
+% \end{definition}
+
+\begin{definition}[Input high ($V_{IH}$) and Input Low ($V_{IL}$) of a gate]
+  \color{\notescol}
+  $V_{IH}$ is the voltage level, such that an input voltage to a gate between $V_{DD}$
+  and $V_{IH}$ is considered \emph{HIGH}. Similarly, input voltage to a gate
+  between $V_{IL}$ and $V_{GND}$ is considered \emph{LOW}.
+\end{definition}
+
+\begin{definition}[Output high ($V_{OH}$) and Output low ($V_{OL}$) of gate]
+  \color{\notescol}
+  $V_{OH}$ is the voltage level, such that an output voltage to a gate between $V_{DD}$
+  and $V_{OH}$ is considered \emph{HIGH}. Similarly, output voltage to a gate
+  between $V_{OL}$ and $V_{GND}$ is considered \emph{LOW}.
+\end{definition}
+
+\begin{definition}[Positive logic and Negative logic]
+  \color{\notescol}
+  What we have considered so far is Positive logic where \emph{HIGH} voltage is
+  equated to Boolean logic \emph{TRUE} or \emph{1} and \emph{LOW} is considered
+  \emph{FALSE} or \emph{0}. In negative logic these are reversed. Same physical
+  circuit can represent different logical circuits in positive logic and
+  negative logic.
+\end{definition}
+
+\begin{definition}[Noise margins ($NM_L$ and $NM_H$) of a channel]
+  \color{\notescol}
+  The maximum amount of noise that can be added (or substracted ) to a channel
+  without exceeding the logic level specifications of a gate.  
+  $NM_L  = V_{IL} - V_{OL}$ \\
+  $NM_H  = V_{OH} - V_{IH}$
+\end{definition}
+
+\begin{example}
+  \includegraphics[width=0.3\linewidth]{fig1.24-noise-margins.png}\\
+  If $V_{DD} = 5V$ , $V_{IL} = 1.35V$, $V_{IH} = 3.15V$, $V_{OL} = 0.33V$ and
+  $V_{OH} = 3.84V$ for both the ``inverters'', then what are the low and high
+  noise margins? Can the circuit tolerate 1V of noise at the channel?
+\end{example}
+
+\begin{example}
+  Design a T-ff using J-K ff
+\end{example}
+
+\end{document}
